@@ -142,7 +142,12 @@ body{background:var(--bg);
    margin-top:22px;padding-top:22px}
 
  .btn-row{text-align:center;
-   margin-top:26px}
+   margin-top:26px;
+   display: flex;
+   justify-content: center;
+   gap: 12px;
+   flex-wrap: wrap;
+ }
   
  .btn{display:inline-block;
   font-size:15px;
@@ -154,6 +159,10 @@ body{background:var(--bg);
   padding:13px 44px;
   cursor:pointer;
   transition:opacity .15s ease,transform .1s ease}
+
+ .btn.secondary {
+   background: var(--accent);
+ }
 
  .btn:hover{opacity:.85}
 
@@ -200,6 +209,30 @@ body{background:var(--bg);
 }
 
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* إعدادات الطباعة للحفاظ على التصميم وإخفاء الإدخالات */
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  body {
+    background-color: var(--surface) !important;
+  }
+  /* إخفاء بطاقة الإدخال والأزرار عند الطباعة */
+  .card:not(#resultsCard), .no-print, .hero p, .err {
+    display: none !important;
+  }
+  /* إزالة الظل وتقليل الحواف في الطباعة لتبدو بشكل أنظف */
+  .card {
+    box-shadow: none !important;
+    border: 1px solid var(--border) !important;
+    margin-top: 0 !important;
+  }
+  .wrap {
+    padding-top: 0 !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -245,15 +278,20 @@ body{background:var(--bg);
         <div class="rt">المدوَّر+التشكرات</div>
         <div class="rv n" id="rmod">—</div>
         <div class="rd n" id="rmodd"></div>
-        <div class="card-head"><h2>-------------------------------</h2></div>
+        <div class="card-head" style="margin-top:15px; margin-bottom:15px;"><h2>-------------------------------</h2></div>
         <div class="rt">المهدور</div>
         <div class="rv n" id="rmah">—</div>
         <div class="rd n" id="rmahd"></div>
-        <div class="card-head"><h2>-------------------------------</h2></div>
+        <div class="card-head" style="margin-top:15px; margin-bottom:15px;"><h2>-------------------------------</h2></div>
         <div class="rt">المجموع</div>
         <div class="rv n" id="rgrand">—</div>
         <div class="rd n" id="rgrandd"></div>
       </div>
+    </div>
+    
+    
+    <div class="btn-row no-print" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);">
+      <button class="btn secondary" id="printBtn" type="button">طباعة النتيجة</button>
     </div>
   </section>
 
@@ -301,6 +339,10 @@ body{background:var(--bg);
     $("resultsCard").classList.remove("hidden");
   }
   $("calcBtn").addEventListener("click",calc);
+
+  $("printBtn").addEventListener("click", function(){
+    window.print();
+  });
 })();
 </script>
 </body>
