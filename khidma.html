@@ -63,7 +63,8 @@ body{background:var(--bg);
 .hidden{display:none}
 .wrap{max-width:820px;
   margin:0 auto;
-  padding:24px 16px 48px}
+  padding:24px 16px 48px;
+  width:100%;}
 
 .hero{text-align:center;
   padding:44px 16px 8px}
@@ -79,6 +80,7 @@ body{background:var(--bg);
 
 .card{
   max-width:680px;
+  width:100%;
   margin:22px auto 0;
   padding:28px 24px;
   background:var(--surface);
@@ -92,33 +94,45 @@ body{background:var(--bg);
   font-weight:600;
   color:var(--text-3)}
 
-.f-row{display:grid;
-  min-width:0%;
-  max-width:100%;
-  align-items:flex-start;
-  padding:0px 0px 10px;
-   ⁠grid-template-columns: 1fr;
-  gap:22px;
-  margin-bottom:6px;
-  
-
+.f-row {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  margin-bottom: 6px;
 }
-@media(max-width:600px){.f-row{grid-template-columns:1fr;gap:14px}}
-.lb{display:block;
+.f-row > div {
+  width: 100%;
+  min-width: 0; 
+  display: flex;
+  flex-direction: column;
+}
+
+.lb{
   font-size:13px;
   color:var(--text-2);
-  margin-bottom:6px;min-height:36px;
-  line-height:1.4}
+  margin-bottom:6px;
+  min-height:20px;
+  line-height:1.4;
+}
 
- .in{width:100%;
+ .in{
+  display:block;
+  width:100%;
+  min-width: 0; 
+  max-width: 100%;
+  box-sizing:border-box;
+  margin:0;
+  -webkit-appearance: none; 
+  appearance: none;
   border:1px solid var(--border);
   border-radius:12px;
-  padding:11px 14px;
+  padding:11px 12px; 
   font-size:15px;
   background:var(--bg);
   color:var(--text);
-  transition:border-color .15s ease,box-shadow .15s ease}
-
+  transition:border-color .15s ease,box-shadow .15s ease;
+ }
   
  .in:focus{outline:none;
    border-color:var(--accent);
@@ -129,7 +143,6 @@ body{background:var(--bg);
 
  .btn-row{text-align:center;
    margin-top:26px}
-
   
  .btn{display:inline-block;
   font-size:15px;
@@ -162,6 +175,7 @@ body{background:var(--bg);
   border-radius:16px;
   padding:14px 18px;
   text-align:center;
+  width: 100%;
 }
 
 .res .rt{font-size:13px;
@@ -178,6 +192,13 @@ body{background:var(--bg);
    color:var(--text-4);
    margin-top:4px}
 
+/* تقليل الحواف في الشاشات الصغيرة لإعطاء حقل التاريخ مساحة كافية للعرض */
+@media(max-width:600px){
+  .wrap { padding: 16px 12px 32px; }
+  .card { padding: 22px 14px; }
+  .f-row { gap: 14px; }
+}
+
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -191,6 +212,7 @@ body{background:var(--bg);
 
   <section class="card">
     <div class="card-head"><h3>أدخل البيانات</h3></div>
+    
     <div class="f-row">
       <div>
         <label class="lb" for="d1">آخر ترقية قبل الاحتساب</label>
@@ -206,7 +228,7 @@ body{background:var(--bg);
       </div>
       <div>
         <label class="lb" for="tm">جميع التشكرات منذ آخر استحقاق</label>
-        <input class="in n" type="number" id="tm" min="0" value="">
+        <input class="in n" type="number" id="tm" min="0" value="0">
       </div>
     </div>
 
@@ -231,7 +253,7 @@ body{background:var(--bg);
         <div class="rt">المجموع</div>
         <div class="rv n" id="rgrand">—</div>
         <div class="rd n" id="rgrandd"></div>
-     
+      </div>
     </div>
   </section>
 
