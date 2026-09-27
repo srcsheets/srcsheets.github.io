@@ -223,7 +223,7 @@ body{background:var(--bg);
 
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 
-/* إعدادات الطباعة للحفاظ على التصميم وإخفاء الإدخالات */
+
 @media print {
   * {
     -webkit-print-color-adjust: exact !important;
@@ -232,11 +232,11 @@ body{background:var(--bg);
   body {
     background-color: var(--surface) !important;
   }
-  /* إخفاء بطاقة الإدخال والأزرار عند الطباعة */
+
   .card:not(#resultsCard), .no-print, .hero p, .err {
     display: none !important;
   }
-  /* إزالة الظل وتقليل الحواف في الطباعة لتبدو بشكل أنظف */
+ 
   .card {
     box-shadow: none !important;
     border: 1px solid var(--border) !important;
@@ -274,7 +274,7 @@ body{background:var(--bg);
       </div>
       <div>
         <label class="lb" for="tm">جميع التشكرات منذ آخر استحقاق</label>
-        <input class="in n" type="number" id="tm" min="0" value="0">
+        <input class="in n" type="number" id="tm" min="0" value="">
       </div>
     </div>
 
