@@ -171,10 +171,13 @@ body{background:var(--bg);
   font-weight:600;
   color:var(--light-green-text);
   background:var(--light-green);
-  border:none;
+  border:1px solid rgba(0,0,0,.16);
   border-radius:980px;
   padding:13px 44px;
   cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  -webkit-user-select:none;
+  user-select:none;
   transition:opacity .15s ease,transform .1s ease}
 
  .btn.secondary {
@@ -218,7 +221,20 @@ body{background:var(--bg);
    color:var(--text-4);
    margin-top:4px}
 
+/* خط فاصل قصير فوق زر الطباعة (عدّل العرض من هنا) */
+.short-line{width:120px;
+  max-width:50%;
+  height:1px;
+  background:var(--border);
+  margin:20px auto 0}
 
+/* ملاحظة صغيرة خافتة أسفل الصفحة */
+.sig{text-align:center;
+  font-size:11px;
+  color:var(--text-4);
+  margin-top:28px}
+
+/* تقليل الحواف في الشاشات الصغيرة لإعطاء حقل التاريخ مساحة كافية للعرض */
 @media(max-width:600px){
   .wrap { padding: 16px 12px 32px; }
   .card { padding: 22px 14px; }
@@ -307,10 +323,13 @@ body{background:var(--bg);
     </div>
     
     
-    <div class="btn-row no-print" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);">
+    <div class="short-line no-print"></div>
+    <div class="btn-row no-print" style="margin-top: 20px;">
       <button class="btn secondary" id="printBtn" type="button">طباعة النتيجة</button>
     </div>
   </section>
+
+  <footer class="sig">مالك محمد</footer>
 
 </div>
 
